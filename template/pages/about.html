@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<body class="bg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class=" fa fa-book fx">Book Finder</i></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'index' %}" aria-current="page"> <i
+                                class=" fa fa-home"></i> Home <span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'about' %}" aria-current="page"> <i class=" fa fa-"></i>
+                            About <span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page"> <i class=" fa fa-user"></i>Hello
+                            {{ user.username }} <span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="javascript:{document.getElementById('logout').submit()}"
+                            aria-current="page"> <i class=" fa fa-sign-out"></i> Logout <span
+                                class="visually-hidden"></span></a>
+                        <form action="{% url 'logout' %}" id="logout" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="">
+                        </form>
+                    </li>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'signup' %}" aria-current="page"> <i
+                                class=" fa fa-lock"></i> Sign up<span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'login' %}" aria-current="page"> <i
+                                class=" fa fa-sign-in"></i> Login<span class="visually-hidden"></span></a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    {% include 'includes/messages.html' %}
+
+    <section class="mt-5">
+        <div class="container about">
+            <p>This project is build for Book Lover.Book Finders are search tools that help user find specific books
+                based on their interests and preferences.These tools can be very useful for people who are loooking
+                for a new book to read or who are trying to find a specific book that they've heard about.Book finder
+                typically work by allowing users to enter keywords or phrases that describe the type of book they are
+                looking for. The book finder will then use these keywords to generate a list of potential matches.
+            </p>
+        </div>
+    </section>
+
+    {% endblock %}

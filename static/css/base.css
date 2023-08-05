@@ -1,0 +1,93 @@
+.body{
+    display: grid;
+    height: 80vh;
+    place-content: center;
+} 
+h3{
+    text-align: center;
+    background: linear-gradient(red,blue,yellow);
+    -webkit-background-clip: text;
+    background-size: contain;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 30px !important;
+    color: transparent;
+    animation: wavy 17s ease-in-out infinite;
+
+ }
+.bg{
+    background-color: #35363a4e;
+    transition:  background 500ms ease 0s;
+}
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.5);
+    border: none;
+    outline: none;
+}
+.form{
+    display: grid;
+    place-items: center;
+}
+.img-thum{
+    max-height: 250px;
+    min-height: 250px;
+}
+.mt{
+    margin-top: 110px;
+}
+.img-fluid{
+    max-height: 180px;
+    min-height: 180px;
+}
+.button{
+    display: grid;
+    place-items: center;
+    /* margin-top: 60px; */
+}
+.navbar-collapse {
+    flex-grow: 0 !important;
+    align-items: center;
+}
+.in{
+    outline: none !important;
+    border: none !important;
+    line-height: 2;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+  
+}
+.loader{
+    display:none;
+}
+.btn1{
+    margin-right: 20px;
+    position: absolute;
+    line-height: 2;
+    border: none !important;
+    outline: none !important;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    padding-right:10px ;
+}
+.about{
+    display: grid;
+    place-content: center;
+    height: 50vh;
+}
+.footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+.sec{
+    background-color: gray;height: 10vh;
+}
+@media(max-width:414px){
+    .none{
+        display: none;
+    }
+    .sec{
+        background-color: gray;
+        height: 30vh;
+    }
+}

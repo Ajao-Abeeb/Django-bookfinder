@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body>
+    <div class="container mt">
+    <h3  >Login </h3>
+
+        <form action="{% url 'login' %}" method="POST" class="form">
+          {% csrf_token %}
+          {% include 'includes/messages.html'%}
+            <div class="mb-3">
+                <label for="" class="form-label">Username</label>
+                <input type="text" name="username" id="" class="form-control col-md-6" placeholder="" aria-describedby="helpId" required>
+                <small id="helpId" class="text-muted"></small>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Password</label>
+                <input type="password" name="password" id="" class="form-control col-md-6" placeholder="" aria-describedby="helpId" required>
+                <small id="helpId" class="text-muted"></small>
+              </div>
+               
+              <p class="p">Forgot your password <a href="{% url 'password-reset'%}">Reset Password</a></p>
+                  <p class="p">Create new account <a href="{% url 'signup' %}">Signup</a> here</p>
+                  <div class="mb-3 button">
+                    <button type="submit" class="btn btn-primary">Submit</button> 
+                  </div>
+                  
+            </form> 
+        </div>
+     
+ 
+{% endblock %}

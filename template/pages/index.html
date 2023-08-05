@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<body class="bg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class=" fa fa-book fx">Book Finder</i></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'index' %}" aria-current="page"> <i
+                                class=" fa fa-home"></i> Home <span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'about' %}" aria-current="page"> <i class=" fa fa-"></i>
+                            About <span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page"> <i class=" fa fa-user"></i>Hello
+                            {{ user.username }} <span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="javascript:{document.getElementById('logout').submit()}"
+                            aria-current="page"> <i class=" fa fa-sign-out"></i> Logout <span
+                                class="visually-hidden"></span></a>
+                        <form action="{% url 'logout' %}" id="logout" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="">
+                        </form>
+                    </li>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'signup' %}" aria-current="page"> <i
+                                class=" fa fa-lock"></i> Sign up<span class="visually-hidden"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'login' %}" aria-current="page"> <i
+                                class=" fa fa-sign-in"></i> Login<span class="visually-hidden"></span></a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    {% include 'includes/messages.html' %}
+
+    <section class='text-center container mt-5'>
+        <img class='img-thum' src="{% static 'image/book.png' %}" alt="A boy with a book" srcset="">
+
+        <h2 class="text-light mt-2"><b>SEARCH FOR BOOKS </b></h2>
+        <p>Enter the search query to obtain your desired book</p><b></b>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="text" class="col-6 in">
+            <button type="submit" id="btn" class="btn1"><i class='fa fa-search'></i></button>
+        </form><br>
+        <!-- <button type="submit" id="btn" class="btn1"><i class='fa fa-search'></i></button> -->
+       
+        
+        <div class="loader" id="loader">
+
+        </div>
+        {% for result in results %}
+        {%  if result.preview %}
+        <div class="card mb-3" style="max-width: 100%;">
+            <a href="{{result.preview}}" target="_blank" class="mt-3" style="text-decoration: none; color: black;">
+                <div class="row ">
+                    {% if result.thumbnail %}
+                    <div class="col-md-4">
+                        <img src="{{result.thumbnail}}" class="img-fluid rounded-start" alt="{{result.title}}">
+                    </div>
+                    {% endif %}
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{result.title}}</h5>
+                            <p class="card-text">{{result.description}}.</p>
+                            {% if result.categories %}
+                            <p class="ml-0 mt-3">Category:
+                                {% for category in result.categories %}
+                                {{category}}
+                                {% endfor %}
+                            </p>
+                            {% endif %}
+
+                            {% if result.count %}
+                            <p class="ml-0 mt-1">Pages: {{result.count}}</p>
+                            {% endif %}
+
+                            {% if result.rating %}
+                            <p class="ml-0 mt-1">Rating:{{result.rating}}</p>
+                            {% endif %}
+                            <p class="card-text"><small class="text-muted">{{result.author}}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+            {% endif %}
+            {% endfor %}
+
+                <div class="row">
+          <div class="col-sm-12">
+            <nav class="pagination-a">
+              {% if agent.has_other_pages %}
+              <ul class="pagination justify-content-end">
+              {%  if agent.has_previous %}
+                <li class="page-item ">
+                  <a class="page-link" href="?page={{agent.previous_page_number}}" tabindex="-1">
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </li>
+                {% else %}
+                  <li class="page-item disabled">
+                      <a class="page-link" href="#"><i class=" bi bi-chevron-left"></i></a>
+                  </li>
+              {% endif %}
+              {% for i in agent.paginator.page_range %}
+              {% if agent.number == i %}
+                <li class="page-item"><a class="page-link active" href="#">{{i}}</a></li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+              {% endif %}
+              {% endfor %}
+              {% if agent.has_next %}
+                <li class="page-item next">
+                  <a class="page-link" href="?page={{agent.next_page_number}}">
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </li>
+                {% else %}
+                  <li class="page-item disabled">
+                      <a class="page-link" href="#"><i class=" bi bi-chevron-right"></i></a>
+                  </li>
+                {% endif %}
+              </ul>
+              {% endif %}
+             </nav>
+          </div>
+        </div>
+        <br>
+    </section>
+
+    {% endblock %}
