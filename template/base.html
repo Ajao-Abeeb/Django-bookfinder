@@ -37,7 +37,7 @@
     function loader() {
         var load = document.getElementById("loader")
          
-            $(load).after('<img src="static/image/loading.gif" id="image"/>')
+            $(load).after('<img src="static/image/loading.gif" id="image" style="display: grid;place-items: center;height: 250px;position: absolute;top: 50%;"/>')
       setTimeout(() => {
         var image = document.getElementById("image")
         $(image).fadeOut()
