@@ -80,7 +80,7 @@ h3{
     width: 100%;
 }
 .sec{
-    background-color: gray;height: 10vh;
+    background-color: gray;height: 9vh;
 }
 @media(max-width:414px){
     .none{
@@ -88,6 +88,6 @@ h3{
     }
     .sec{
         background-color: gray;
-        height: 30vh;
+        height: 10vh;
     }
 }

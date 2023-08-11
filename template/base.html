@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bookfinder</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
      <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
@@ -16,7 +16,7 @@
  <footer class="footer">
     <section class="sec">
         <div class="col-12 text-center">
-            <p class="mt-5 ">Made with  by 
+            <p class="mt-5 ">Made by 
                 Adebobby_tech</p>
         </div>
     </section>
@@ -37,7 +37,7 @@
     function loader() {
         var load = document.getElementById("loader")
          
-            $(load).after('<img src="static/image/loading.gif" id="image" style="display: grid;place-items: center;height: 250px;position: absolute;top: 50%;"/>')
+            $(load).after('<img src="static/image/loading.gif" id="image" style="display: grid;place-items: center;height: 250px;position: absolute;top: 60%;"/>')
       setTimeout(() => {
         var image = document.getElementById("image")
         $(image).fadeOut()
