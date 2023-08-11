@@ -82,6 +82,11 @@ h3{
 .sec{
     background-color: gray;height: 9vh;
 }
+.read-more-text .read-more-button {
+     color: white;
+     background: black;
+     padding: 2px;
+  }
 @media(max-width:414px){
     .none{
         display: none;

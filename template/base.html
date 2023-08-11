@@ -45,6 +45,37 @@
            
        
     }
+    // read more
+    const readMorePrefaceMaxLength = 100;
+const readMoreTexts = document.querySelectorAll(".read-more-text");
+readMoreTexts.forEach((readMoreText) => {
+  const extra = SliceHTML.sliceHTML(
+    readMoreText,
+    readMorePrefaceMaxLength
+  );
+  if (extra.textContent.length === 0) {
+    return;
+  }
+  const preface = SliceHTML.sliceHTML(
+    readMoreText,
+    0,
+    readMorePrefaceMaxLength
+  );
+  readMoreText.innerHTML = "";
+  readMoreText.append(preface);
+  const extraSpan = document.createElement("span");
+  extraSpan.hidden = true;
+  extraSpan.append(extra);
+  const button = document.createElement("button");
+  button.classList.add("read-more-button");
+  button.textContent = "... read more";
+  button.addEventListener("click", () => {
+    button.hidden = true;
+    extraSpan.hidden = false;
+  });
+  readMoreText.append(button);
+  readMoreText.append(extraSpan);
+});
 </script>
 </body>
 </html>
