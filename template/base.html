@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
      <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/css/font-awesome.css' %}">
+     
 
 {% block content%}
 
@@ -21,7 +22,10 @@
         </div>
     </section>
  </footer>
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+ <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+ <script src="{% static 'js/jquery.shorten.js' %}"></script>
+ <script src="{% static 'js/jquery.shorten.min.js' %}"></script>
+
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
  
@@ -37,7 +41,7 @@
     function loader() {
         var load = document.getElementById("loader")
          
-            $(load).after('<img src="static/image/loading.gif" id="image" style="display: grid;place-items: center;height: 250px;position: absolute;top: 60%;"/>')
+            $(load).after('<img src="static/image/loading.gif" id="image" style="display: grid;place-items: center;height: 250px;position: relative;top: 60%;"/>')
       setTimeout(() => {
         var image = document.getElementById("image")
         $(image).fadeOut()
@@ -45,37 +49,14 @@
            
        
     }
-    // read more
-    const readMorePrefaceMaxLength = 100;
-const readMoreTexts = document.querySelectorAll(".read-more-text");
-readMoreTexts.forEach((readMoreText) => {
-  const extra = SliceHTML.sliceHTML(
-    readMoreText,
-    readMorePrefaceMaxLength
-  );
-  if (extra.textContent.length === 0) {
-    return;
-  }
-  const preface = SliceHTML.sliceHTML(
-    readMoreText,
-    0,
-    readMorePrefaceMaxLength
-  );
-  readMoreText.innerHTML = "";
-  readMoreText.append(preface);
-  const extraSpan = document.createElement("span");
-  extraSpan.hidden = true;
-  extraSpan.append(extra);
-  const button = document.createElement("button");
-  button.classList.add("read-more-button");
-  button.textContent = "... read more";
-  button.addEventListener("click", () => {
-    button.hidden = true;
-    extraSpan.hidden = false;
-  });
-  readMoreText.append(button);
-  readMoreText.append(extraSpan);
-});
+   $(document).ready(function(){
+    $('.read-more-text').shorten({
+      "showChars":200,
+      "moreText": "<p class='read'>Read more<p>",
+      "lessText":"<p class='read'>Less read<p>"
+    })
+   })
+    
 </script>
 </body>
 </html>

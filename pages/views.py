@@ -2,7 +2,6 @@ from django.shortcuts import render , redirect
 from django.contrib import messages
 from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.contrib import auth
 import requests 
 import json
@@ -32,12 +31,8 @@ def index(request):
                 'preview':answer['items'][i]['volumeInfo'].get('previewLink'),
             }
             result_list.append(result_dict)
-            paginator = Paginator(result_list, 6)
-            page = request.GET.get('page')
-            paged_agent = paginator.get_page(page)
             context={
                 'results' :result_list,
-                'agent':paged_agent,
             }
         return render(request,'pages/index.html',context)
      

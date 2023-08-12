@@ -76,17 +76,21 @@ h3{
 }
 .footer {
     bottom: 0;
-    position: fixed;
     width: 100%;
 }
 .sec{
     background-color: gray;height: 9vh;
 }
-.read-more-text .read-more-button {
-     color: white;
-     background: black;
-     padding: 2px;
-  }
+.read{
+    background: gray;
+    outline: none !important;
+    border: none !important;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    margin: auto;
+}
 @media(max-width:414px){
     .none{
         display: none;
