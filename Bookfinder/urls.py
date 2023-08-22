@@ -19,6 +19,7 @@ from django.urls import path , include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 from django.contrib.auth.views import (
     PasswordResetView,
     PasswordResetDoneView,
@@ -32,6 +33,8 @@ urlpatterns = [
     path('password-reset/done/', PasswordResetDoneView.as_view(template_name='pages/password_reset_done.html'), name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='pages/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset-complete', PasswordResetCompleteView.as_view(template_name='pages/password_reset_complete.html'), name='password_reset_complete'),
-    path('login', auth_view.LoginView.as_view(template_name='pages/login.html',extra_context={'title':'Welcome - Login to socio'}),name='login'),
+    path('login', auth_view.LoginView.as_view(template_name='pages/login.html',extra_context={'title':'Welcome - Login to Bookfinder'}),name='login'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
