@@ -1,7 +1,8 @@
-"""signupAuth URL Configuration
+"""
+URL configuration for Bookfinder project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -36,5 +37,3 @@ urlpatterns = [
     path('login', auth_view.LoginView.as_view(template_name='pages/login.html',extra_context={'title':'Welcome - Login to Bookfinder'}),name='login'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
